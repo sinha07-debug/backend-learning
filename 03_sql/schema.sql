@@ -26,8 +26,8 @@ create table purchases(
     p_id serial primary key,
     c_id int not null,
     g_id int not null,
-    p_date timestamp default_current_timestamp,
-    p_price decimal(10,2) not null check p_price>=0,
+    p_date timestamp default current_timestamp,
+    p_price decimal(10,2) not null check (p_price>=0),
     constraint fk_purchase_customer foreign key (c_id) references customers(c_id),
     constraint fk_purchase_game foreign key (g_id) references games(g_id)
 );
@@ -38,13 +38,13 @@ create table reviews(
     g_id int not null,
     rating int not null check(rating between 1 and 5),
     comment text,
-    created_at timestamp default_current_timestamp,
+    created_at timestamp default current_timestamp,
 
     CONSTRAINT fk_review_customer
-        FOREIGN KEY (customer_id)
-        REFERENCES customers(customer_id),
+        FOREIGN KEY (c_id)
+        REFERENCES customers(c_id),
 
     CONSTRAINT fk_review_game
-        FOREIGN KEY (game_id)
-        REFERENCES games(game_id)
+        FOREIGN KEY (g_id)
+        REFERENCES games(g_id)
 )
