@@ -19,7 +19,7 @@ class Developer(Base):
     founded_year:Mapped[int] 
     website: Mapped[str | None] = mapped_column(String(255))
 
-    __table_args__=(CheckConstraint("founded_year>1800",name="chk_founded_year"))
+    __table_args__=(CheckConstraint("founded_year>1800",name="chk_founded_year"),)
 
     games:Mapped[list["Game"]]=relationship(back_populates="developer")
 
@@ -33,7 +33,7 @@ class Game(Base):
     price:Mapped[float]=mapped_column(Numeric(10,2),nullable=False)
     d_id:Mapped[int]=mapped_column(ForeignKey("developers.d_id"),nullable=False)
 
-    __table_args__=(CheckConstraint("price>=0",name="chk_game_price"))
+    __table_args__=(CheckConstraint("price>=0",name="chk_game_price"),)
 
     developer:Mapped["Developer"]=relationship(back_populates="games")
     purchases:Mapped[list["Purchase"]]=relationship(back_populates="game")
