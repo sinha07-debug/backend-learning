@@ -1,12 +1,14 @@
 from db import SessionLocal
-from crud import get_games
+from crud import delete_game
 
 
 db = SessionLocal()
 
-games = get_games(db)
+deleted_game = delete_game(db, 8)
 
-for game in games:
-    print(game.g_id, game.title)
+if deleted_game:
+    print("Deleted:", deleted_game.g_id, deleted_game.title)
+else:
+    print("Game not found")
 
 db.close()
