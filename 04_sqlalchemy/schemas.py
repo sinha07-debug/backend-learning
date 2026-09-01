@@ -28,3 +28,27 @@ class GameResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class DeveloperCreate(BaseModel):
+    name: str
+    country: str
+    founded_year: int
+    website: str | None = None
+
+
+class DeveloperUpdate(BaseModel):
+    name: str | None = None
+    country: str | None = None
+    founded_year: int | None = None
+    website: str | None = None
+
+
+class DeveloperResponse(BaseModel):
+    d_id: int
+    name: str
+    country: str
+    founded_year: int
+    website: str | None
+
+    class Config:
+        from_attributes = True

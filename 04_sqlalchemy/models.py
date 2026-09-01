@@ -38,7 +38,7 @@ class Game(Base):
     developer:Mapped["Developer"]=relationship(back_populates="games")
     purchases:Mapped[list["Purchase"]]=relationship(back_populates="game")
     reviews:Mapped[list["Review"]]=relationship(back_populates="game")
-
+   
 
 class Customer(Base):
     __tablename__="customers"
