@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 import crud
 import schemas
-
+from auth import router as auth_router
 from db import get_db
 app = FastAPI()
 
@@ -113,3 +113,5 @@ def delete_developer(developer_id: int,db: Session = Depends(get_db)):
             detail="Developer not found"
         )
     return
+
+app.include_router(auth_router)
