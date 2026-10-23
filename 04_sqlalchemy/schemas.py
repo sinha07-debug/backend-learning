@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from pydantic import BaseModel, Field
 from decimal import Decimal
 
 class GameCreate(BaseModel):
@@ -29,13 +29,6 @@ class GameResponse(BaseModel):
     class Config:
         from_attributes = True
 
-class GameBasicResponse(BaseModel):
-    g_id: int
-    title: str
-
-    class Config:
-        from_attributes = True
-
 class DeveloperCreate(BaseModel):
     name: str
     country: str
@@ -56,19 +49,6 @@ class DeveloperResponse(BaseModel):
     country: str
     founded_year: int
     website: str | None
-    games: list[GameBasicResponse]
 
     class Config:
         from_attributes = True
-
-class UserCreate(BaseModel):
-    username:str
-    email:EmailStr
-    password:str
-
-class UserResponse(BaseModel):
-    model_config=ConfigDict(from_attributes=True)
-    u_id:int
-    username:str
-    email:EmailStr
-    is_active:bool
